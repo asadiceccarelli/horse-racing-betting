@@ -23,7 +23,7 @@ def split_dataset():
     """
     df = pd.read_csv('project/bet_table.csv')
     df.drop(df[df.Result == 'NON_RUNNER'].index, inplace=True)
-    X = df.drop('Result', axis=1)
+    X = df.drop(['Result', 'Stakes'], axis=1)
     y = df['Result']
     label_encoder = LabelEncoder()
     X['Race_Type'] = label_encoder.fit_transform(X['Race_Type'])
@@ -122,6 +122,6 @@ def tune_xgboost(sets):
 
 if __name__ == '__main__':
     sets = split_dataset()
-    # create_baseline_model(sets)
-    # tune_random_forest(sets)
-    tune_xgboost(sets)
+    create_baseline_model(sets)
+    tune_random_forest(sets)
+    # tune_xgboost(sets)
