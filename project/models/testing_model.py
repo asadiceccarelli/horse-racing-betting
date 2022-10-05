@@ -34,14 +34,16 @@ if __name__ == '__main__':
     sets = split_dataset()
     model = load_best_model(sets)
     test = pd.DataFrame({
-        'Odds': 10,
+        'Odds': 3,
         'Available': 400,
-        'Num_Runners': 8,
+        'Num_Runners': 14,
         'Race_Type': 1,
         'Going': 1,
         'Days': 20, 
         'Bet_Strength': 4
         }, index=[0])
     result = model.predict(test)
+    probability = model.predict_proba(test)
 
     print(result)
+    print(probability)
