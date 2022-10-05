@@ -1,4 +1,3 @@
-import logging
 import json
 import joblib
 import pandas as pd
@@ -9,8 +8,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split, KFold, GridSearchCV
 from sklearn.metrics import classification_report
-
-logging.basicConfig(level=logging.INFO)
 
 
 def split_dataset():
