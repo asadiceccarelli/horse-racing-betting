@@ -26,9 +26,26 @@ def split_dataset():
 
 
 def load_best_model(sets):
+    """Load the best model from a .joblib file.
+    Returns:
+        model (class): The best model loaded.
+    """
     model = joblib.load('project/models/xgboost/model.joblib')
     model.fit(sets[0], sets[1])
     return model
+
+
+def predict_outcome(model, test):
+    """Predict the outcome of a test input and print the
+    outcome and probability split between the output classes.
+    Args:
+        model (class): The model used to predict.
+        test (DataFrame): The values of each feature in a DataFrame.
+    """
+    result = model.predict(test)
+    probability = model.predict_proba(test)
+    print(f'The outcome will be {result} with class probability {probability}.')
+
 
 if __name__ == '__main__':
     sets = split_dataset()
@@ -42,8 +59,4 @@ if __name__ == '__main__':
         'Days': 20, 
         'Bet_Strength': 4
         }, index=[0])
-    result = model.predict(test)
-    probability = model.predict_proba(test)
-
-    print(result)
-    print(probability)
+    predict_outcome(model, test)

@@ -117,8 +117,14 @@ def tune_xgboost(sets):
     save_model_metrics('xgboost', model, best_params, reports_dict)
 
 
-if __name__ == '__main__':
+def create_and_tune_all_models():
+    """Splits the dataset into train, validation and test
+    sets before tuning each model and saving these metrics.
+    """
     sets = split_dataset()
     create_baseline_model(sets)
     tune_random_forest(sets)
-    # tune_xgboost(sets)
+    tune_xgboost(sets)
+
+if __name__ == '__main__':
+    create_and_tune_all_models()
